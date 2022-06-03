@@ -18,11 +18,8 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
-      redirect_to posts_path, notice: "つぶやきを編集しました！"
-    else
-      render :edit
-    end
+    @post.update(post_params)
+    redirect_to posts_path, notice: "つぶやきを編集しました！"
   end
 
   def confirm
@@ -45,11 +42,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    if @post.destroy
+    @post.destroy
     redirect_to posts_path, notice:"つぶやきを削除しました！"
-    else
-      render :index
-    end
   end
 
   private
